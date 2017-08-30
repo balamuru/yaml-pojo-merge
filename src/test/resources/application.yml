@@ -1,0 +1,56 @@
+com.foo.bar.creds:
+  user: jdoe
+  password: abc123
+
+com.foo.bar.allcreds:
+  credentials:
+    - user: bill
+      password: bi123
+    - user: hilary
+      password: h123
+
+com.foo.bar.famcreds:
+  husband:
+    user: bill
+    password: bi123
+  wife:
+    user: hilary
+    password: h123
+
+com.foo.bar.jms:
+  activemq:
+    brokerUrl: tcp://localhost:61646
+    brokerName: broker2
+    queueName: some_queue
+  wmq:
+    hostName: localhost
+    queueManager: qmgr_123
+    port: 11401
+    channel: WF.JAVA.CLIENT
+    transportType: 1
+    queueName: queue_123
+
+
+---
+spring.profiles: prod
+
+com.foo.bar.creds:
+  password: Top$ecret!
+
+com.foo.bar.allcreds:
+  credentials:
+    - password: monic@
+    - password: my_em@ilz
+
+com.foo.bar.famcreds:
+  husband:
+    password: monic@
+  wife:
+    password: my_em@ilz
+
+com.foo.bar.jms:
+  activemq:
+    brokerUrl: tcp://xyz.com:61646
+  wmq:
+    hostName: jms.xyz.com
+
