@@ -61,3 +61,34 @@ for (even if the user name is suppllied) since it is provided a list of items, a
 that all items are provided, or (even in order for that matter)
 
 OTOH, the FamilyCredentials YAML resolves perfectly since the paths to the password fields are well formed and determinate.
+
+The solution, if dealing with unbounded data structures, is to employ something that allows us to qualify the segment being modified i.e. a hashmap.
+Here is a data structure that will work (the keys "mr_prez" and "first_lady" enable precise resolution of the qualified yaml properties that are updated).
+
+The test cases in this project bear this out.
+```$xslt
+public class AllCredentialsMap {
+    private Map<String, Credentials> credentials;
+```
+
+and the corresponding yaml segments
+```$xslt
+com.foo.bar.allcredsmap:
+  credentials:
+    mr_prez:
+      user: bill
+      password: bi123
+    first_lady:
+      user: hilary
+      password: h123
+
+---
+spring.profiles: prod
+
+com.foo.bar.allcredsmap:
+  credentials:
+    mr_prez:
+      password: monic@
+    first_lady:
+      password: my_em@ilz      
+```

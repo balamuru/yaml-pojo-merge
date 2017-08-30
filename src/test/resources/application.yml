@@ -9,6 +9,15 @@ com.foo.bar.allcreds:
     - user: hilary
       password: h123
 
+com.foo.bar.allcredsmap:
+  credentials:
+    mr_prez:
+      user: bill
+      password: bi123
+    first_lady:
+      user: hilary
+      password: h123
+
 com.foo.bar.famcreds:
   husband:
     user: bill
@@ -41,6 +50,13 @@ com.foo.bar.allcreds:
   credentials:
     - password: monic@
     - password: my_em@ilz
+
+com.foo.bar.allcredsmap:
+  credentials:
+    mr_prez:
+      password: monic@
+    first_lady:
+      password: my_em@ilz
 
 com.foo.bar.famcreds:
   husband:

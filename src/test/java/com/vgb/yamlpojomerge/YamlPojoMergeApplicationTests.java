@@ -1,9 +1,6 @@
 package com.vgb.yamlpojomerge;
 
-import com.vgb.yamlpojomerge.data.AllCredentials;
-import com.vgb.yamlpojomerge.data.Credentials;
-import com.vgb.yamlpojomerge.data.FamilyCredentials;
-import com.vgb.yamlpojomerge.data.MyJmsConfiguration;
+import com.vgb.yamlpojomerge.data.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +24,8 @@ public class YamlPojoMergeApplicationTests {
 	AllCredentials allCredentials;
 
 	@Autowired
+	AllCredentialsMap allCredentialsMap;
+	@Autowired
 	MyJmsConfiguration myJmsConfiguration;
 
 	@Autowired
@@ -40,10 +39,22 @@ public class YamlPojoMergeApplicationTests {
 	}
 
 	//doesn't work, a container containing a collection (potentially unbounded) of instances
-	@Test
+	@Test(expected = AssertionError.class)
 	public void testAllCredentials() {
 		Credentials credentials1 = allCredentials.getCredentials().get(0);
 		Credentials credentials2 = allCredentials.getCredentials().get(1);
+
+		assertThat(credentials1.getUser(), is(equalTo("bill")));
+		assertThat(credentials1.getPassword(), is(equalTo("monic@")));
+
+		assertThat(credentials2.getUser(), is(equalTo("hilary")));
+		assertThat(credentials2.getPassword(), is(equalTo("my_em@ilz")));
+	}
+
+	@Test
+	public void testAllCredentialsMap() throws Exception {
+		Credentials credentials1 = allCredentialsMap.getCredentials().get("mr_prez");
+		Credentials credentials2 = allCredentialsMap.getCredentials().get("first_lady");
 
 		assertThat(credentials1.getUser(), is(equalTo("bill")));
 		assertThat(credentials1.getPassword(), is(equalTo("monic@")));
